@@ -237,7 +237,9 @@ typedef int (AMXAPI *AMX_IDLE)(struct tagAMX *amx, int AMXAPI Exec(struct tagAMX
   #pragma warning(disable:4127)  /* "conditional expression is constant" (needed for static_assert) */
   #pragma warning(disable:4996)  /* POSIX name is deprecated */
 #elif defined __GNUC__
-  #pragma GCC diagnostic ignored "-Waddress-of-packed-member"
+  #if GCC_VERSION >= 90000       /* -Waddress-of-packed-member exists since GCC 9 */
+    #pragma GCC diagnostic ignored "-Waddress-of-packed-member"
+  #endif
 #elif defined __clang__
   #pragma GCC diagnostic ignored "-Wlogical-op-parentheses"
   #pragma GCC diagnostic ignored "-Wbitwise-op-parentheses"
