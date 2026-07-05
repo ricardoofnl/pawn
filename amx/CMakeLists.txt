@@ -1,6 +1,6 @@
 #build file for CMake, see http://www.cmake.org/
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5...3.28)
 
 PROJECT(pawnamx)
 
@@ -52,8 +52,10 @@ IF(WIN32)
   ENDIF(NOT BORLAND)
 ENDIF(WIN32)
 IF(APPLE)
-  # OS X defaults to 64-bit build, but 64-bit issues prevent that being a good idea
-  SET(CMAKE_OSX_ARCHITECTURES "i386")
+  # Modern macOS no longer supports i386; build a universal (Intel + Apple Silicon) binary.
+  # The old 32-bit-only restriction applied to the optional x86 ASM/JIT cores, which are
+  # not used in this CMake build (the portable C core is 64-bit clean).
+  SET(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
 ENDIF(APPLE)
 
 # --------------------------------------------------------------------------

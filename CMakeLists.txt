@@ -1,6 +1,6 @@
 #build file for CMake, see http://www.cmake.org/
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5...3.28)
 PROJECT(pawn)
 
 ADD_SUBDIRECTORY(./compiler)
